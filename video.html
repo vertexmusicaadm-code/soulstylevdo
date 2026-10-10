@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Soul Style — A camiseta que prega</title>
+<style>
+  @font-face { font-family: Poppins; font-weight: 600; src: url(assets/fonts/poppins-latin-600-normal.woff2); }
+  @font-face { font-family: Poppins; font-weight: 700; src: url(assets/fonts/poppins-latin-700-normal.woff2); }
+  @font-face { font-family: Poppins; font-weight: 800; src: url(assets/fonts/poppins-latin-800-normal.woff2); }
+  :root { --rose-500: #C16784; --rose-200: #EAC2D0; --ink-950: #16181D; --ink-900: #2C2E35; --mock-bg: #C05E7B; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: #000; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink-950); font-family: Poppins, sans-serif; color: #fff; }
+  .layer { position: absolute; inset: 0; display: none; overflow: hidden; }
+  .cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--mock-bg); transform-origin: 50% 45%; }
+  .cold { filter: contrast(1.15) saturate(.8) brightness(.9); }
+  .warm { filter: saturate(1.05) sepia(.12); }
+  .ph { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 40%, #2a3340, #0d1014); }
+  .ph.warm { background: radial-gradient(120% 80% at 50% 40%, #b7743c, #2a160c); }
+  .ph span { position: absolute; left: 65px; top: 300px; font: 600 26px Poppins; letter-spacing: .18em; color: rgba(255,255,255,.45); }
+
+  #question { background: var(--ink-950); }
+  #question .q { position: absolute; left: 65px; right: 65px; top: 285px; bottom: 670px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 10px; }
+  #question .line { font-weight: 800; font-size: 118px; line-height: 1.02; letter-spacing: -.01em; }
+  #question .w { display: inline-block; margin: 0 .12em; opacity: 0; }
+  #question .w.key { color: var(--rose-500); }
+
+  #drop { background: var(--rose-500); }
+  #drop img { position: absolute; left: 50%; top: 768px; height: 220px; transform: translate(-50%, -50%); }
+
+  #final { background: var(--ink-900); }
+  #final .icon { position: absolute; left: 50%; top: 380px; height: 110px; transform: translate(-50%, -50%); }
+  #final .card { position: absolute; left: 50%; top: 700px; width: 300px; height: 375px; border-radius: 8px; overflow: hidden; }
+  #final .card img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+  #final .phrase { position: absolute; left: 65px; right: 65px; top: 980px; transform: translateY(-50%); text-align: center; font-weight: 700; font-size: 54px; }
+  #final .btn { position: absolute; left: 50%; top: 1090px; width: 760px; height: 110px; margin: -55px 0 0 -380px; background: var(--rose-500); border-radius: 4px;
+                display: flex; align-items: center; justify-content: center; gap: 18px; font-weight: 600; font-size: 40px; letter-spacing: .06em; }
+  #final .arrow { position: absolute; left: 50%; top: 1190px; margin: -22px 0 0 -22px; }
+  #final .label { position: absolute; left: 0; right: 0; top: 1235px; transform: translateY(-50%); text-align: center; font-weight: 600; font-size: 22px; letter-spacing: .18em; color: var(--rose-200); }
+
+  #caption { position: absolute; left: 90px; right: 90px; bottom: 800px; text-align: center; font-weight: 800; font-size: 68px; line-height: 1.18;
+             letter-spacing: -.01em; text-transform: uppercase; display: none; }
+  #caption .w { display: inline-block; margin: 0 .14em; -webkit-text-stroke: 12px var(--ink-950); paint-order: stroke fill; text-shadow: 0 4px 0 rgba(22,24,29,.85); }
+  #caption .w.key { background: var(--rose-500); padding: 6px 14px; border-radius: 4px; -webkit-text-stroke: 0; text-shadow: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="layer" id="ia1"></div>
+  <div class="layer" id="mk1hook"><img class="cover" src="assets/mockup-01-jesus-ama-voce-branca.png"></div>
+  <div class="layer" id="ia2"></div>
+  <div class="layer" id="ia3"></div>
+  <div class="layer" id="ia4"></div>
+  <div class="layer" id="question"><div class="q"></div></div>
+  <div class="layer" id="drop"><img src="assets/icon-white.svg"></div>
+  <div class="layer" id="mk1"><img class="cover" src="assets/mockup-01-jesus-ama-voce-branca.png"></div>
+  <div class="layer" id="mk2"><img class="cover" src="assets/mockup-02-jesus-vive-preta.png"></div>
+  <div class="layer" id="mk3"><img class="cover" src="assets/mockup-03-cristo-vive-em-mim-preta.png"></div>
+  <div class="layer" id="ia5"></div>
+  <div class="layer" id="pan"><img class="cover" src="assets/mockup-02-jesus-vive-preta.png"></div>
+  <div class="layer" id="final">
+    <img class="icon" src="assets/icon-white.svg">
+    <div class="card"><img src="assets/mockup-01-jesus-ama-voce-branca.png"></div>
+    <div class="card"><img src="assets/mockup-03-cristo-vive-em-mim-preta.png"></div>
+    <div class="card"><img src="assets/mockup-02-jesus-vive-preta.png"></div>
+    <div class="phrase">A estampa começa a conversa.</div>
+    <div class="btn">CHAMAR NO WHATSAPP
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    </div>
+    <svg class="arrow" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#EAC2D0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    <div class="label">SOUL STYLE</div>
+  </div>
+  <div id="caption"></div>
+</div>
+
+<script src="timeline.js"></script>
+<script>
+const $ = (s) => document.querySelector(s);
+const params = new URLSearchParams(location.search);
+const C = TL.cuts;
+
+// cubic-bezier(.2,0,.2,1) do design system
+function bezier(x1, y1, x2, y2) {
+  const f = (a, b, s) => 3 * (1 - s) ** 2 * s * a + 3 * (1 - s) * s * s * b + s ** 3;
+  return (x) => { let lo = 0, hi = 1, s = x; for (let i = 0; i < 24; i++) { s = (lo + hi) / 2; f(x1, x2, s) < x ? lo = s : hi = s; } return f(y1, y2, s); };
+}
+const ease = bezier(.2, 0, .2, 1);
+const prog = (t, t0, d) => ease(Math.max(0, Math.min(1, (t - t0) / d)));
+
+// Cenas de IA: media/ia-N.* transcodificado para out/cache/ia-N.webm pelo render; sem arquivo, placeholder escuro.
+const IA = { ia1: ['IA-1 · BÍBLIA', 'cold'], ia2: ['IA-2 · ÔNIBUS', 'cold'], ia3: ['IA-3 · FACULDADE', 'cold'], ia4: ['IA-4 · MERCADO', 'cold'], ia5: ['IA-5 · CAMINHADA', 'warm'] };
+const haveIA = (params.get('ia') || '').split(',').filter(Boolean);
+for (const [id, [label, tone]] of Object.entries(IA)) {
+  $('#' + id).innerHTML = haveIA.includes(id)
+    ? `<video class="cover ${tone}" src="out/cache/${id}.webm" muted preload="auto"></video>`
+    : `<div class="ph ${tone}"><span>${label}</span></div>`;
+}
+
+// Cena 4: monta as palavras
+const qWords = [];
+for (const line of TL.question.lines) {
+  const el = document.createElement('div'); el.className = 'line';
+  for (const w of line.split(' ')) {
+    const s = document.createElement('span'); s.className = 'w' + (w === TL.question.key ? ' key' : ''); s.textContent = w;
+    el.appendChild(s); qWords.push(s);
+  }
+  $('#question .q').appendChild(el);
+}
+
+// Legendas: tempo de cada palavra proporcional ao tamanho dentro do bloco
+const blocks = TL.captions.map(([t0, t1, text, key]) => {
+  const words = text.split(' '); const total = words.reduce((n, w) => n + w.length + 1, 0);
+  let acc = 0;
+  return { t0, t1, key, words: words.map((w) => { const s = t0 + (t1 - t0) * acc / total; acc += w.length + 1; return { w, s }; }) };
+});
+const normKey = (w) => w.replace(/[^\p{L}]/gu, '');
+
+let shownBlock = null;
+function caption(t) {
+  const b = t < C.final ? blocks.find((b) => t >= b.t0 && t < b.t1) : null;
+  const el = $('#caption');
+  if (!b) { el.style.display = 'none'; shownBlock = null; return; }
+  if (b !== shownBlock) {
+    shownBlock = b;
+    const keys = (b.key || '').split(' ');
+    // palavra-chave de 2 palavras ("TODO DIA") vira uma pílula só
+    const parts = [];
+    for (let i = 0; i < b.words.length; i++) {
+      if (b.key && keys.length > 1 && normKey(b.words[i].w) === keys[0]) { parts.push({ w: b.key, s: b.words[i].s, key: true }); i += keys.length - 1; continue; }
+      parts.push({ ...b.words[i], key: normKey(b.words[i].w) === b.key });
+    }
+    el.innerHTML = ''; b.parts = parts.map((p) => { const s = document.createElement('span'); s.className = 'w' + (p.key ? ' key' : ''); s.textContent = p.w; el.appendChild(s); return { el: s, s: p.s }; });
+  }
+  el.style.display = 'block';
+  b.parts.forEach((p, i) => {
+    const next = b.parts[i + 1] ? b.parts[i + 1].s : b.t1;
+    const on = t >= p.s && t < next;
+    p.el.style.transform = `scale(${on ? 1 + .06 * prog(t, p.s, .08) : 1})`;
+  });
+}
+
+// [id, início, fim, animação(el, tempo local, duração)]
+const shots = [
+  ['ia1', 0, C.camiseta, (el, l, d) => zoom(el, 1 + .06 * l / d)],
+  ['mk1hook', C.camiseta, C.onibus, (el, l) => zoom(el, 1.08 - .08 * prog(l, 0, 6 / 30))],
+  ['ia2', C.onibus, C.faculdade],
+  ['ia3', C.faculdade, C.mercado],
+  ['ia4', C.mercado, C.pergunta],
+  ['question', C.pergunta, C.drop, (el, l) => {
+    const step = (TL.question.end - TL.question.start) / (qWords.length - 1);
+    qWords.forEach((w, i) => { const p = prog(l + C.pergunta, TL.question.start + i * step, .25); w.style.opacity = p; w.style.transform = `translateY(${20 * (1 - p)}px)`; });
+  }],
+  ['drop', C.drop, C.mk1, (el, l) => { const p = prog(l, 0, .4), i = el.querySelector('img'); i.style.opacity = p; i.style.transform = `translate(-50%, calc(-50% + ${2 * (1 - p)}px))`; }],
+  ['mk1', C.mk1, C.mk2, (el, l, d) => zoom(el, 1 + .06 * l / d)],
+  ['mk2', C.mk2, C.mk3, (el, l, d) => zoom(el, 1 + .06 * l / d)],
+  ['mk3', C.mk3, C.caminhada, (el, l, d) => zoom(el, 1 + .06 * l / d)],
+  ['ia5', C.caminhada, C.conversa],
+  ['pan', C.conversa, C.final, (el, l, d) => {
+    // desce pelo detalhe da estampa: zoom 1.6 e pan de cima (y≈600) até embaixo (y≈1250) da estampa
+    const img = el.querySelector('img'), p = l / d, y = 600 + 650 * p;
+    img.style.transformOrigin = '50% 0'; img.style.transform = `scale(1.6) translateY(${(960 - y * 1.6) / 1.6}px)`;
+  }],
+  ['final', C.final, TL.duration + 1, (el, l) => {
+    const ic = el.querySelector('.icon'); ic.style.opacity = prog(l, 0, .5);
+    const fan = [[-230, -6, 1, 2], [0, 0, 1.06, 0], [230, 6, 1, 1]]; // x, rotação, escala, ordem de entrada
+    el.querySelectorAll('.card').forEach((c, i) => {
+      const [x, r, s, k] = fan[i], p = prog(l, .15 + k * .12, .45);
+      c.style.zIndex = i === 1 ? 2 : 1; c.style.opacity = p;
+      c.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${20 * (1 - p)}px)) rotate(${r}deg) scale(${s})`;
+    });
+    fade(el.querySelector('.phrase'), prog(l, .7, .45), 'translateY(-50%)');
+    fade(el.querySelector('.btn'), prog(l, .9, .45));
+    fade(el.querySelector('.label'), prog(l, 1.1, .45), 'translateY(-50%)');
+    const a = el.querySelector('.arrow'); a.style.opacity = prog(l, 1.1, .45);
+    a.style.transform = `translateY(${4 - 4 * Math.cos(2 * Math.PI * l / .9)}px)`; // 0→8px, loop de 900 ms
+  }],
+];
+function zoom(el, s) { el.firstElementChild.style.transform = `scale(${s})`; }
+function fade(e, p, base = '') { e.style.opacity = p; e.style.transform = `${base} translateY(${20 * (1 - p)}px)`; }
+
+async function seek(t) {
+  const waits = [];
+  for (const [id, t0, t1, anim] of shots) {
+    const el = $('#' + id), on = t >= t0 && t < t1;
+    el.style.display = on ? 'block' : 'none';
+    if (!on) continue;
+    anim?.(el, t - t0, t1 - t0);
+    const v = el.querySelector('video');
+    if (v) {
+      if (v.readyState < 1) await new Promise((r) => v.addEventListener('loadedmetadata', r, { once: true }));
+      v.currentTime = Math.min(t - t0, v.duration - .05);
+      waits.push(new Promise((r) => v.addEventListener('seeked', r, { once: true })));
+    }
+  }
+  caption(t);
+  await Promise.all(waits);
+}
+window.seek = seek;
+window.TL = TL;
+
+// Prévia no navegador: video.html?t=12 congela num instante; sem parâmetro toca em loop.
+if (!params.has('render')) {
+  if (params.has('t')) seek(+params.get('t'));
+  else { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % TL.duration); requestAnimationFrame(loop); }; loop(); }
+}
+</script>
+</body>
+</html>
